@@ -106,6 +106,45 @@ void encodeToRawFormat5(uint8_t* data_buffer, bme280_data_t* environmental, acce
 
 }
 
+
+void encodeToRaw8AccelFormat(uint8_t* data_buffer, acceleration_t* acceleration, int length)
+{
+    if (length >= 8)
+    {
+        for(int i = 0; i < 8; i++)
+        {
+
+          data_buffer[(3 * i  )]     =    acceleration[i].x;
+          data_buffer[(3 * i+1)]     =    acceleration[i].y;
+          data_buffer[(3 * i+2)]     =    acceleration[i].z;
+
+        }
+    }
+}
+
+void encodeToRaw4AccelFormat(uint8_t* data_buffer, acceleration_t* acceleration, int length)
+
+{
+    if (length >= 4)
+    {
+        for(int i = 0; i < 4; i++)
+        {
+  
+
+          data_buffer[(6 * i  )]     =    (acceleration[i].x) >> 8;
+          data_buffer[(6 * i+1)]     =    (acceleration[i].x)&0xFF;
+
+          data_buffer[(6 * i+2)]     =    (acceleration[i].y) >> 8;
+          data_buffer[(6 * i+3)]     =    (acceleration[i].y)&0xFF;
+
+          data_buffer[(6 * i+4)]     =    (acceleration[i].z) >> 8;
+          data_buffer[(6 * i+5)]     =    (acceleration[i].z)&0xFF;
+
+        }
+    }
+
+
+}
 /**
  *  Encodes sensor data into given char* url. The base url must have the base of url written by caller.
  *  For example, url = { 0x03, 'r' 'u' 'u' '.' 'v' 'i' '/' '#' '0' '0' '0' '0' '0' '0' '0' '0'}

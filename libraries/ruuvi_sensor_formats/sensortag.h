@@ -69,6 +69,10 @@ void encodeToSensorDataFormat(uint8_t* data_buffer, ruuvi_sensor_t* data);
  */
 void encodeToRawFormat5(uint8_t* data_buffer, bme280_data_t* environmental, acceleration_t* acceleration, uint16_t acceleration_events, uint16_t vbatt, int8_t tx_pwr);
 
+void encodeToRaw8AccelFormat(uint8_t* data_buffer, acceleration_t* acceleration, int length);
+
+void encodeToRaw4AccelFormat(uint8_t* data_buffer, acceleration_t* acceleration, int length_buffer);
+
 
 /**
  *  Encodes sensor data into given char* url. The base url must have the base of url written by caller.
